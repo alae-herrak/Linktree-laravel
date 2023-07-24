@@ -1,13 +1,13 @@
 @extends('master')
 
 @section('content')
-    <div class="container">
-        <div class="row mt-3">
+    <div class="container p-3">
+        <div class="row">
             <div class="col-12 col-md-8 col-lg-6 bg-light border border-1 rounded-3 p-3">
                 <h2>Profile information</h2>
                 <form action="/profile-info" method="post">
                     @csrf
-                    @method('PATCH')
+                    @method('patch')
                     <label for="name" class="form-label">Name</label>
                     @error('name')
                         <small class="text-danger">{{ $message }}</small>
@@ -34,7 +34,7 @@
                 <h2>Password</h2>
                 <form action="/profile-password" method="post">
                     @csrf
-                    @method('PATCH')
+                    @method('patch')
                     <label for="current_password" class="form-label">Current password</label>
                     @error('current_password')
                         <small class="text-danger">{{ $message }}</small>
@@ -52,6 +52,18 @@
                     <input type="password" name="password_confirmation" id="password_confirmation"
                         class="form-control mb-3" />
                     <button type="submit" class="btn btn-dark">Save</button>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 col-md-8 col-lg-6 bg-light border border-1 rounded-3 p-3">
+                <h2>Delete account</h2>
+                <p>This action is irreversible, your account will be permanently deleted.</p>
+                <form action="/profile-delete" method="post">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn btn-danger"
+                        onclick="return confirm('Are you sure you want to delete your account?')">Delete account</button>
                 </form>
             </div>
         </div>

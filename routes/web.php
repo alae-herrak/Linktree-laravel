@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('master');
-});
+
 
 
 Route::get('/register', [AuthController::class, 'registerForm']);
@@ -30,4 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get("/profile", [ProfileController::class, 'index']);
     Route::patch('/profile-info', [ProfileController::class, 'update_info']);
     Route::patch('/profile-password', [ProfileController::class, 'update_password']);
+    Route::delete('/profile-delete', [ProfileController::class, 'destroy']);
+    Route::get('/', function () {
+        return view('master');
+    });
 });

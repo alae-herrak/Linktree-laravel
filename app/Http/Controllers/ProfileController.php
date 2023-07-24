@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
@@ -17,7 +18,7 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'email' => ['required', $request()->user()->email != $request->email ? Rule::unique('users', 'email') : null],
+            'email' => ['required', auth()->user()->email != $request->email ? Rule::unique('users', 'email') : null],
             'description' => ['max:255']
         ]);
 
@@ -44,8 +45,17 @@ class ProfileController extends Controller
         return redirect('/profile')->with('status', 'password-updated');
     }
 
-    public function destroy(Profile $profile)
+    public function destroy(Request $request)
     {
-        //
+        $user = $request->user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
