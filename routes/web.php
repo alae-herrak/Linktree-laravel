@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
+Route::get('/', function () {
+    return redirect('/links');
+});
 
 Route::get('/register', [AuthController::class, 'registerForm']);
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
@@ -29,7 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile-info', [ProfileController::class, 'update_info']);
     Route::patch('/profile-password', [ProfileController::class, 'update_password']);
     Route::delete('/profile-delete', [ProfileController::class, 'destroy']);
-    Route::get('/', function () {
-        return view('master');
-    });
+
+    Route::resource('links', LinkController::class);
 });

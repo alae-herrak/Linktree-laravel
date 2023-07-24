@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container p-3">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6 bg-light border border-1 rounded-3 p-3">
                 <h2>Profile information</h2>
                 <form action="/profile-info" method="post">
@@ -29,7 +29,7 @@
                 </form>
             </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3 justify-content-center">
             <div class="col-12 col-md-8 col-lg-6 bg-light border border-1 rounded-3 p-3">
                 <h2>Password</h2>
                 <form action="/profile-password" method="post">
@@ -55,7 +55,7 @@
                 </form>
             </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3 justify-content-center">
             <div class="col-12 col-md-8 col-lg-6 bg-light border border-1 rounded-3 p-3">
                 <h2>Delete account</h2>
                 <p>This action is irreversible, your account will be permanently deleted.</p>
