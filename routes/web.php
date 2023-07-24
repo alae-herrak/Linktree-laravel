@@ -34,3 +34,5 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('links', LinkController::class);
 });
+
+Route::get('/profile/{user}', [ProfileController::class, 'show_profile']);

@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
+    public function show_profile(User $user)
+    {
+        $links = $user->links;
+
+        return view('profile.public', ['user' => $user, 'links' => $links]);
+    }
+
     public function index()
     {
         return view('profile.index');
